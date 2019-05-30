@@ -1,7 +1,7 @@
 fs = require("fs");
 //songs
 imagine = ["c", "cmaj7", "f", "am", "dm", "g", "e7"];
-somewhere_over_the_rainbow = ["c", "em", "f", "g", "am"];
+somewhereOverTheRainbowover_the_rainbow = ["c", "em", "f", "g", "am"];
 tooManyCooks = ["c", "g", "f"];
 iWillFollowYouIntoTheDark = ["f", "dm", "bb", "c", "a", "bbm"];
 babyOneMoreTime = ["cm", "g", "bb", "eb", "fm", "ab"];
@@ -87,7 +87,7 @@ function setProbabilityOfChordsInLabels() {
 }
 
 train(imagine, "easy");
-train(somewhere_over_the_rainbow, "easy");
+train(somewhereOverTheRainbowover_the_rainbow, "easy");
 train(tooManyCooks, "easy");
 train(iWillFollowYouIntoTheDark, "medium");
 train(babyOneMoreTime, "medium");
