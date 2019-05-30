@@ -80,7 +80,7 @@ function setProbabilityOfChordsInLabels() {
       chord
     ) {
       probabilityOfChordsInLabels[difficulty][chord] =
-        (probabilityOfChordsInLabels[difficulty][chord] * 1.0) / songs.length;
+        probabilityOfChordsInLabels[difficulty][chord] / songs.length;
     });
   });
 }
