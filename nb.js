@@ -105,12 +105,10 @@ function classify(chords) {
   Object.keys(labelProbabilities).forEach(function(difficulty) {
     var first = labelProbabilities[difficulty] + 1.01;
     chords.forEach(function(chord) {
-      var probabilityOfChordsInLabel =
+      var probabilityOfChordInLabel =
         probabilityOfChordsInLabels[difficulty][chord];
-      if (probabilityOfChordsInLabel === undefined) {
-        first + 1.01;
-      } else {
-        first = first * (probabilityOfChordsInLabel + 1.01);
+      if (probabilityOfChordInLabel !== undefined) {
+        first = first * (probabilityOfChordInLabel + 1.01);
       }
     });
     classified[difficulty] = first;
