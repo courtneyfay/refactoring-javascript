@@ -12,7 +12,6 @@ function setDifficulties() {
   medium = "medium";
   hard = "hard";
 }
-setDifficulties();
 
 function setSongs() {
   imagine = ["c", "cmaj7", "f", "am", "dm", "g", "e7"];
@@ -48,7 +47,6 @@ function setup() {
   chordCountsInLabels = new Map();
   probabilityOfChordsInLabels = new Map();
 }
-setup();
 
 function train(chords, label) {
   songs.push({ label, chords });
@@ -93,6 +91,8 @@ function setProbabilityOfChordsInLabels() {
 }
 
 function trainAll() {
+  setDifficulties();
+  setup();
   setSongs();
   train(imagine, easy);
   train(somewhereOverTheRainbowover_the_rainbow, easy);
