@@ -1,12 +1,3 @@
-function fileName() {
-  var theError = new Error("here I am");
-  return theError.stack.match(/\/(\w+\.js)\:/)[1];
-}
-
-function welcomeMessage() {
-  return `Welcome to ${fileName()}!`;
-}
-
 function setDifficulties() {
   easy = "easy";
   medium = "medium";
@@ -155,9 +146,6 @@ describe("the file", function() {
     wish(classified.get("easy") === 2.023094827160494);
     wish(classified.get("medium") === 1.855758613168724);
     wish(classified.get("hard") === 1.855758613168724);
-  });
-  it("sets welcome message", function() {
-    wish(welcomeMessage() === "Welcome to nb.js!");
   });
   it("label probabilities", function() {
     wish(labelProbabilities.get("easy") === 0.3333333333333333);
