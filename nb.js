@@ -1,3 +1,13 @@
+function fileName() {
+  var theError = new Error("here I am");
+  return theError.stack.match(/\/(\w+\.js)\:/)[1];
+}
+console.log(`Welcome to ${fileName()}!`);
+
+var easy = "easy";
+var medium = "medium";
+var hard = "hard";
+
 imagine = ["c", "cmaj7", "f", "am", "dm", "g", "e7"];
 somewhereOverTheRainbowover_the_rainbow = ["c", "em", "f", "g", "am"];
 tooManyCooks = ["c", "g", "f"];
@@ -29,26 +39,6 @@ var labelCounts = [];
 var labelProbabilities = [];
 var chordCountsInLabels = [];
 var probabilityOfChordsInLabels = [];
-var easy = "easy";
-var medium = "medium";
-var hard = "hard";
-
-train(imagine, easy);
-train(somewhereOverTheRainbowover_the_rainbow, easy);
-train(tooManyCooks, easy);
-train(iWillFollowYouIntoTheDark, medium);
-train(babyOneMoreTime, medium);
-train(creep, medium);
-train(paperBag, hard);
-train(toxic, hard);
-train(bulletproof, hard);
-
-setLabelProbabilities();
-setChordCountsInLabels();
-setProbabilityOfChordsInLabels();
-
-classify(["d", "g", "e", "dm"]);
-classify(["f#m7", "a", "dadd9", "dmaj7", "bm", "bm7", "d", "f#m"]);
 
 function train(chords, label) {
   songs.push([label, chords]);
@@ -97,10 +87,24 @@ function setProbabilityOfChordsInLabels() {
   });
 }
 
+train(imagine, easy);
+train(somewhereOverTheRainbowover_the_rainbow, easy);
+train(tooManyCooks, easy);
+train(iWillFollowYouIntoTheDark, medium);
+train(babyOneMoreTime, medium);
+train(creep, medium);
+train(paperBag, hard);
+train(toxic, hard);
+train(bulletproof, hard);
+
+setLabelProbabilities();
+setChordCountsInLabels();
+setProbabilityOfChordsInLabels();
+
 function classify(chords) {
   var smoothing = 1.01;
-  var classified = {};
   console.log(labelProbabilities);
+  var classified = {};
   Object.keys(labelProbabilities).forEach(function(difficulty) {
     var first = labelProbabilities[difficulty] + smoothing;
     chords.forEach(function(chord) {
@@ -114,3 +118,6 @@ function classify(chords) {
   });
   console.log(classified);
 }
+
+classify(["d", "g", "e", "dm"]);
+classify(["f#m7", "a", "dadd9", "dmaj7", "bm", "bm7", "d", "f#m"]);
