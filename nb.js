@@ -51,14 +51,13 @@ classify(["d", "g", "e", "dm"]);
 classify(["f#m7", "a", "dadd9", "dmaj7", "bm", "bm7", "d", "f#m"]);
 
 function train(chords, label) {
-  var index; //same as var index = undefined; thanks to variable hoisting
   songs.push([label, chords]);
   labels.push(label);
-  for (index = 0; index < chords.length; index++) {
-    if (!allChords.includes(chords[index])) {
-      allChords.push(chords[index]);
+  chords.forEach(chord => {
+    if (!allChords.includes(chord)) {
+      allChords.push(chord);
     }
-  }
+  });
   if (Object.keys(labelCounts).includes(label)) {
     labelCounts[label] = labelCounts[label] + 1;
   } else {
