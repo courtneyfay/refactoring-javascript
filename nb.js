@@ -33,11 +33,28 @@ var easy = "easy";
 var medium = "medium";
 var hard = "hard";
 
+train(imagine, easy);
+train(somewhereOverTheRainbowover_the_rainbow, easy);
+train(tooManyCooks, easy);
+train(iWillFollowYouIntoTheDark, medium);
+train(babyOneMoreTime, medium);
+train(creep, medium);
+train(paperBag, hard);
+train(toxic, hard);
+train(bulletproof, hard);
+
+setLabelProbabilities();
+setChordCountsInLabels();
+setProbabilityOfChordsInLabels();
+
+classify(["d", "g", "e", "dm"]);
+classify(["f#m7", "a", "dadd9", "dmaj7", "bm", "bm7", "d", "f#m"]);
+
 function train(chords, label) {
+  var index; //same as var index = undefined; thanks to variable hoisting
   songs.push([label, chords]);
   labels.push(label);
-
-  for (var index = 0; index < chords.length; index++) {
+  for (index = 0; index < chords.length; index++) {
     if (!allChords.includes(chords[index])) {
       allChords.push(chords[index]);
     }
@@ -81,24 +98,10 @@ function setProbabilityOfChordsInLabels() {
   });
 }
 
-train(imagine, easy);
-train(somewhereOverTheRainbowover_the_rainbow, easy);
-train(tooManyCooks, easy);
-train(iWillFollowYouIntoTheDark, medium);
-train(babyOneMoreTime, medium);
-train(creep, medium);
-train(paperBag, hard);
-train(toxic, hard);
-train(bulletproof, hard);
-
-setLabelProbabilities();
-setChordCountsInLabels();
-setProbabilityOfChordsInLabels();
-
 function classify(chords) {
   var smoothing = 1.01;
-  console.log(labelProbabilities);
   var classified = {};
+  console.log(labelProbabilities);
   Object.keys(labelProbabilities).forEach(function(difficulty) {
     var first = labelProbabilities[difficulty] + smoothing;
     chords.forEach(function(chord) {
@@ -112,6 +115,3 @@ function classify(chords) {
   });
   console.log(classified);
 }
-
-classify(["d", "g", "e", "dm"]);
-classify(["f#m7", "a", "dadd9", "dmaj7", "bm", "bm7", "d", "f#m"]);
