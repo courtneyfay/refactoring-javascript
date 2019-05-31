@@ -7,9 +7,12 @@ function welcomeMessage() {
   return `Welcome to ${fileName()}!`;
 }
 
-var easy = "easy";
-var medium = "medium";
-var hard = "hard";
+function setDifficulties() {
+  easy = "easy";
+  medium = "medium";
+  hard = "hard";
+}
+setDifficulties();
 
 function setSongs() {
   imagine = ["c", "cmaj7", "f", "am", "dm", "g", "e7"];
