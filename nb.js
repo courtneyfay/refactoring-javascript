@@ -115,3 +115,13 @@ function classify(chords) {
   });
   console.log(classified);
 }
+
+////////////////////////////////////////////////////////////////////////
+// var fileName = "nb.js";
+// console.log(`Welcome to ${fileName}!`);
+// var theError = new Error("here I am");
+// console.log(theError);
+// console.log("theError", typeof theError);
+// console.log("property names", Object.getOwnPropertyNames(theError));
+// console.log("message", typeof theError.message);
+// console.log("stack", typeof theError.stack);
