@@ -6,7 +6,7 @@ const classifier = {
   chordCountsInLabels: new Map(),
   smoothing: 1.01,
   valueForChordDifficulty(difficulty, chord) {
-    const value = this.chordCountsInLabels.get(difficulty)[chord];
+    const value = this.likelihoodFromChord(difficulty, chord);
     return value ? value + this.smoothing : 1;
   },
   classify: function(chords) {
@@ -23,6 +23,9 @@ const classifier = {
         }
       )
     );
+  },
+  likelihoodFromChord: function(difficulty, chord) {
+    return this.chordCountsInLabels.get(difficulty)[chord] / this.songs.length;
   }
 };
 
@@ -72,17 +75,6 @@ function setChordCountsInLabels() {
   });
 }
 
-function setProbabilityOfChordsInLabels() {
-  classifier.chordCountsInLabels.forEach(function(_chords, difficulty) {
-    Object.keys(classifier.chordCountsInLabels.get(difficulty)).forEach(
-      function(chord) {
-        classifier.chordCountsInLabels.get(difficulty)[chord] /=
-          classifier.songs.length;
-      }
-    );
-  });
-}
-
 function trainAll() {
   songList.songs.forEach(function(song) {
     train(song.chords, song.difficulty);
@@ -93,7 +85,6 @@ function trainAll() {
 function setLabelsAndProbabilities() {
   setLabelProbabilities();
   setChordCountsInLabels();
-  setProbabilityOfChordsInLabels();
 }
 
 const wish = require("wish");
